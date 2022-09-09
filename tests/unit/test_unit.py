@@ -67,9 +67,7 @@ class TestUnit(unittest.TestCase):
         result = Number('0')
         self.assertEqual(str(result), '0')
 
-    def test_conversion_context(self):
-        result = ConversionContext.parse_input('1 + 2 - 3')
-        self.assertEqual(str(result), '((1 Add 2) Subtract 3)')
+
 
 
 
