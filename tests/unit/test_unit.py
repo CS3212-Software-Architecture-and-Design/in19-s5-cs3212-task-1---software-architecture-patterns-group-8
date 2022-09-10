@@ -12,49 +12,65 @@ class TestUnit(unittest.TestCase):
         result = Add(1, 2)
         self.assertEqual(str(result), '(1 Add 2)')
 
-    def test_add_combined1(self):
-        result = Add('(1 Add 2)',3)
-        self.assertEqual(str(result), '((1 Add 2) Add 3)')
+        result = Add(0, 0)
+        self.assertEqual(str(result), '(0 Add 0)')
 
-    def test_add_combined2(self):
-        result = Add(5,'(3 Add -1)')
-        self.assertEqual(str(result), '(5 Add (3 Add -1))')
+        result = Add(-7, -8)
+        self.assertEqual(str(result), '(-7 Add -8)')
+
+        result = Add(0, 5)
+        self.assertEqual(str(result), '(0 Add 5)')
+
+        result = Add(0, -1)
+        self.assertEqual(str(result), '(0 Add -1)')
+
+        result = Add(5, 0)
+        self.assertEqual(str(result), '(5 Add 0)')
+
+        result = Add(-5, 0)
+        self.assertEqual(str(result), '(-5 Add 0)')
+
+        result = Add(-5, 8)
+        self.assertEqual(str(result), '(-5 Add 8)')
 
     def test_subtract(self):
         result = Subtract(7, 3)
         self.assertEqual(str(result), '(7 Subtract 3)')
 
-    def test_subtract_combined1(self):
-        result = Subtract('(6 Subtract 2)',1)
-        self.assertEqual(str(result), '((6 Subtract 2) Subtract 1)')
+        result = Subtract(7, -3)
+        self.assertEqual(str(result), '(7 Subtract -3)')
 
-    def test_subtract_combined2(self):
-        result = Subtract(4,'(2 Subtract -1)')
-        self.assertEqual(str(result), '(4 Subtract (2 Subtract -1))')
+        result = Subtract(7, 0)
+        self.assertEqual(str(result), '(7 Subtract 0)')
 
-    def test_mixed_combined1(self):
-        result = Add('(3 Subtract 2)',1)
-        self.assertEqual(str(result), '((3 Subtract 2) Add 1)')
+        result = Subtract(-7, 0)
+        self.assertEqual(str(result), '(-7 Subtract 0)')
 
-    def test_mixed_combined2(self):
-        result = Add(4,'(-1 Subtract 7)')
-        self.assertEqual(str(result), '(4 Add (-1 Subtract 7))')
+        result = Subtract(0, 3)
+        self.assertEqual(str(result), '(0 Subtract 3)')
 
-    def test_mixed_combined3(self):
-        result = Subtract('(1 Add -2)',4)
-        self.assertEqual(str(result), '((1 Add -2) Subtract 4)')
+        result = Subtract(-3, 3)
+        self.assertEqual(str(result), '(-3 Subtract 3)')
 
-    def test_mixed_combined4(self):
-        result = Subtract(3,'(1 Add 7)')
-        self.assertEqual(str(result), '(3 Subtract (1 Add 7))')
+        result = Subtract(-3, 7)
+        self.assertEqual(str(result), '(-3 Subtract 7)')
+
+        result = Subtract(0, 0)
+        self.assertEqual(str(result), '(0 Subtract 0)')
 
     def test_number(self):
         result = Number('5')
         self.assertEqual(str(result), '5')
 
-    def test_conversion_context(self):
-        result = ConversionContext.parse_input('1 + 2 - 3')
-        self.assertEqual(str(result), '((1 Add 2) Subtract 3)')
+        result = Number('-5')
+        self.assertEqual(str(result), '-5')
+
+        result = Number('0')
+        self.assertEqual(str(result), '0')
+
+
+
+
 
 
 
