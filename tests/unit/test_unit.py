@@ -3,6 +3,7 @@ from interpreter.add import Add
 from interpreter.subtract import Subtract
 from interpreter.number import Number
 from interpreter.conversion_context import ConversionContext
+from interpreter.validation import Validation
 
 
 class TestUnit(unittest.TestCase):
@@ -66,6 +67,25 @@ class TestUnit(unittest.TestCase):
 
         result = Number('0')
         self.assertEqual(str(result), '0')
+
+    def test_validation(self):
+        result = Validation.validate("1 + 5 -12")
+        self.assertEqual(result,['1','+','5','-','12'])
+
+        result = Validation.validate("1-10+234")
+        self.assertEqual(result,['1','-','10','+','234'])
+
+        result = Validation.validate('1')
+        self.assertEqual(result,['1'])
+
+        result = Validation.validate('2++3 ')
+        self.assertEqual(result,False)
+
+        result = Validation.validate('2+ ')
+        self.assertEqual(result, False)
+
+
+
 
 
 
