@@ -17,7 +17,7 @@ class TestUnit(unittest.TestCase):
 
     def test_number(self):
         result = Number('5')
-        self.assertEqual(result, '5')
+        self.assertEqual(str(result), '5')
 
     def test_conversion_context(self):
         result = ConversionContext.parse_input('1 + 2 - 3')
