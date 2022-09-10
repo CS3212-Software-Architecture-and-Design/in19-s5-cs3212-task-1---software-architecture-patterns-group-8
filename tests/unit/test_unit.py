@@ -84,6 +84,14 @@ class TestUnit(unittest.TestCase):
         result = Validation.validate('2+ ')
         self.assertEqual(result, False)
 
+        result = Validation.validate(' ')
+        self.assertEqual(result, False)
+
+        result = Validation.validate("S+ 4-8")
+        self.assertEqual(result, ['S','+','4','-','8'])
+
+
+
 
 
 

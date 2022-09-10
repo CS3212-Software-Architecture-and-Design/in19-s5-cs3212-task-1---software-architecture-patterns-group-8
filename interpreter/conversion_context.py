@@ -2,6 +2,7 @@ from  interpreter.number import Number
 from interpreter.add import Add
 from interpreter.subtract import Subtract
 from interpreter.validation import Validation
+from Exceptions.InvalidInput import InvalidInputError
 
 
 class ConversionContext:
@@ -12,19 +13,22 @@ class ConversionContext:
         # input_array = input_str.split(" ")
         input_array = Validation.validate(input_str)
         if (not input_array):
-            raise Exception("Please input valid expressions!")
+            raise InvalidInputError("Please input valid inputs")
+
 
         tree = []
-
         if(len(input_array)==1):
             return Number(input_array[0])
 
         while len(input_array) > 1:
-            left = input_array.pop(0)
-            left_expression = Number(left)
-            operator = input_array.pop(0)
-            right = input_array[0]
-            right_expression = Number(right)
+            try:
+                left = input_array.pop(0)
+                left_expression = Number(left)
+                operator = input_array.pop(0)
+                right = input_array[0]
+                right_expression = Number(right)
+            except ValueError:
+                raise InvalidInputError("Please input valid numbers!")
 
             if not tree:
                 # Empty Data Structures return False by default
